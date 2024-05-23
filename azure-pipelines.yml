@@ -36,12 +36,14 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
 - task: PublishTestResults@2
+  displayName: 'PublishTestResults'
   inputs:
     testResultsFormat: 'VSTest'
     testResultsFiles: '$(Agent.TempDirectory)/*.trx'
     failTaskOnFailedTests: true
 
 - task: PublishPipelineArtifact@1
+  displayName: 'PublishPipelineArtifact'
   inputs:
     targetPath: '$(Agent.TempDirectory)'
     artifactName: 'TestResults'
