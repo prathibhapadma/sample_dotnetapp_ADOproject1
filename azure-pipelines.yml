@@ -28,18 +28,18 @@ steps:
     projects: '**/*Tests.csproj'
     arguments: '--logger trx --configuration $(buildConfiguration) --results-directory $(Agent.TempDirectory)' #'--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'publish'
-  inputs:
-    command: 'publish'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+# - task: DotNetCoreCLI@2
+#   displayName: 'publish'
+#   inputs:
+#     command: 'publish'
+#     projects: '**/*.csproj'
+#     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
 - task: PublishTestResults@2
   displayName: 'PublishTestResults'
   inputs:
     testResultsFormat: 'VSTest'
-    testResultsFiles: '$(Agent.TempDirectory)/*.trx'
+    testResultsFiles: '**/*.trx'
     failTaskOnFailedTests: true
 
 - task: PublishPipelineArtifact@1
