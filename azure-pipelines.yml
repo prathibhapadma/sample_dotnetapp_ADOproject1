@@ -32,19 +32,19 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    artifactName: 'package'
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    publishLocation: 'Container'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     artifactName: 'package'
+#     pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#     publishLocation: 'Container'
 
-- task: DownloadBuildArtifacts@0
-  inputs:
-    artifactName: 'package'
-    downloadPath: '$(System.ArtifactsDirectory)'
+# - task: DownloadBuildArtifacts@0
+#   inputs:
+#     artifactName: 'package'
+#     downloadPath: '$(System.ArtifactsDirectory)'
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: '<service connection name>'
-    appName: '<app service name>'
-    package: '$(System.ArtifactsDirectory)/package/**/*.zip'
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: '<service connection name>'
+#     appName: '<app service name>'
+#     package: '$(System.ArtifactsDirectory)/package/**/*.zip'
